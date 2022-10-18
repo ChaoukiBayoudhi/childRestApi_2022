@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @ToString(exclude = "photo")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@Table(name = "parent_tab")
 public class Parent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
