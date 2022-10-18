@@ -4,6 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,4 +30,8 @@ public class Parent {
     private LocalDate birthDate;
     @Lob
     private  byte[] photo;
+
+    //Relation entre Parent et Child (1-*)
+    @OneToMany(mappedBy = "supervisorParent")
+    private Set<Child> children=new HashSet<>();
 }

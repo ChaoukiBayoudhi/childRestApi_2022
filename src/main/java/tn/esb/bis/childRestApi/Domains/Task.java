@@ -35,4 +35,14 @@ public class Task {
     @EqualsAndHashCode.Include
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
+
+    //Relation entre task et Report (1-1)
+    @OneToOne(mappedBy = "task")
+    //mappedBy informe l'ORM que les deux attributs "report" et "task" proviennet de la même relation
+    private Report report;
+
+    //creation de la table association
+    //Cette creation se fait dans l'une des deux classes Task ou Child
+    //mais pas les deux
+    @JoinTable(name="childActivity")
 }

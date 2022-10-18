@@ -2,10 +2,7 @@ package tn.esb.bis.childRestApi.Domains;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -28,5 +25,11 @@ public class Report {
     private LocalDate date;
     private String facedProblems;
     private String benefits;
+
+    //Relation entre Report et Task (1-1)
+    @OneToOne
+    @JoinColumn(name = "task_id",referencedColumnName = "id")
+    //"task_id" est le nom de la clé etrangere dans la base de données
+    private Task task;
 
 }

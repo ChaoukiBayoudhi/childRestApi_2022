@@ -37,4 +37,8 @@ public class Child {
     @Lob
     private byte[] photo;
 
+    //Relationn entre Child et Parent (*-1)
+    @ManyToOne
+    @JoinColumn(name = "parent_id",referencedColumnName = "id")
+    private Parent supervisorParent;
 }
