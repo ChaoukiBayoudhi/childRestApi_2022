@@ -3,6 +3,8 @@ package tn.esb.bis.childRestApi.Domains;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,6 +23,7 @@ public class Parent {
     private Long id;
     @NonNull
     @EqualsAndHashCode.Include
+    @Size(min=3,max=20)
     private String name;
     @NonNull
     @EqualsAndHashCode.Include
@@ -28,6 +31,8 @@ public class Parent {
     @NonNull
     @EqualsAndHashCode.Include
     private LocalDate birthDate;
+    @Email
+    private String email;
     @Lob
     private  byte[] photo;
 

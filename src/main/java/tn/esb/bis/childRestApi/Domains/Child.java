@@ -4,6 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter //génère tous les getters pour tous les attributs
 @Setter //génère tous les setters pour tous les attributs
 @NoArgsConstructor //gère un constructeur non parametré
@@ -37,8 +40,16 @@ public class Child {
     @Lob
     private byte[] photo;
 
-    //Relationn entre Child et Parent (*-1)
+    //Relation entre Child et Parent (*-1)
     @ManyToOne
     @JoinColumn(name = "parent_id",referencedColumnName = "id")
     private Parent supervisorParent;
+    @ManyToMany(mappedBy = "children")
+    private Set<Task> childTasks=new HashSet<>();
+
+    //Relation entre Child et Message (1-*)
+    @OneToMany(mappedBy = "child")
+    private Set<Message> childMessages=new HashSet<>();
 }
+
+

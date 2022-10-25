@@ -2,10 +2,7 @@ package tn.esb.bis.childRestApi.Domains;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -25,5 +22,11 @@ public class Message {
     @EqualsAndHashCode.Include
     @NonNull
     private LocalDateTime dateTime;
+
+
+    //la relation entre Message et Child (*-1)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "child_id", referencedColumnName = "id")
+    private Child child;
 
 }

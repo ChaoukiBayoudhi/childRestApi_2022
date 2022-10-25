@@ -2,10 +2,9 @@ package tn.esb.bis.childRestApi.Domains;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -29,4 +28,6 @@ public class Place {
     private double longitude;
     @EqualsAndHashCode.Include
     private double latitude;
+    @OneToMany(mappedBy ="taskPlace")
+    private List<Task> tasks = new ArrayList<>();
 }
