@@ -1,8 +1,8 @@
 package tn.esb.bis.childRestApi.Web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import tn.esb.bis.childRestApi.Domains.Child;
 import tn.esb.bis.childRestApi.Services.ChildService;
 
@@ -25,8 +25,23 @@ public class ChildController {
     //update => se fait via la méthode UPDATE de Http (si on veut modifier tous les attributs(Totale))      @UpdateMapping("url")
     //update => se fait via la méthode PATCH de Http (si on veut modifier quelques attributs(Partielle))    @PatchMapping("url")
     @GetMapping("/all")
-    public List<Child> getAllChildren() {
+    public ResponseEntity<?> getAllChildren() {
         return service.getChildren();
     }
+    //{id} => pour dire la valeur de la variable id.
+    //dans ce cas l'url peut être
+    //http://localhost:8080/4
+    //on veut recuperer le Child dont l'id est 4
+    //l'annotation @PathVariable pour dire au serveur va chercher la valeur de l'id dans le path.
+    @GetMapping("/child/{id}")
+    public ResponseEntity<?> getOneChild(@PathVariable Long id) {
+        return service.getChildren();
+    }
+    //@RequestBody => pour dire au serveur va chercher la valeur de l'objet Child dans le body de la requete'
+    @PostMapping("/add")
+    public ResponseEntity<?> addChild(@RequestBody Child c1){
+        return service.addChild(c1);
+    }
+
 
 }
