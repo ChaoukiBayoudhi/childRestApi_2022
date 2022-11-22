@@ -59,4 +59,15 @@ public class ChildService {
             return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(c1));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("There is an other child with the same information on the database.");
     }
+
+    public ResponseEntity<?> deleteChild(Long id)
+    {
+        Optional<Child> res=repository.findById(id);
+        if(res.isEmpty())
+            return ResponseEntity.notFound().build();
+        repository.deleteById(id);
+        //return ResponseEntity.status(HttpStatus.ACCEPTED).body("The child with id = "+id+"has been successfully deleted.");
+        //or
+        return ResponseEntity.accepted().build();
+    }
 }

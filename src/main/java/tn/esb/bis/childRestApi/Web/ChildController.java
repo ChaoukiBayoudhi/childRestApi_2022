@@ -42,6 +42,11 @@ public class ChildController {
     public ResponseEntity<?> addChild(@RequestBody Child c1){
         return service.addChild(c1);
     }
+    @DeleteMapping("/remove/{id}")
+    public ResponseEntity< ? > removeChild(@PathVariable Long id) {
+        return service.deleteChild(id);
+
+    }
 
 
 }
